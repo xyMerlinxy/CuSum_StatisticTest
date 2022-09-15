@@ -3,8 +3,8 @@
 // #include <bitset>
 // #include <math.h>
 
-#include "io.h"
-#include "CuSum_Cuda.h"
+#include "io.hpp"
+#include "CuSum_Cuda.hpp"
 
 using namespace std;
 

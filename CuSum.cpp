@@ -20,12 +20,17 @@ double CuSum(uint8_t *array, uint64_t numElements){
     for(uint64_t index = 0; index<numElements;index++){
         // przejscie po bitach
         temp = array[index];
+        // na GPU można tą pętlę rozwinąć
         for(int i=0; i<8; i++){
-            if(temp & 0x80) S++;
-            else S--;
+            if(temp & 0x80) {
+                S++;
+                if(S > _max) _max=S;
+            }
+            else {
+                S--;
+                if(S < _min) _min=S;
+            }
             temp <<= 1;
-            if(S < _min) _min--;
-            if(S > _max) _max++;
         }
     }
     int64_t z = (_max > -_min) ? _max : -_min;
